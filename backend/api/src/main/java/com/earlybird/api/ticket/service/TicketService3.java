@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -24,5 +25,17 @@ public class TicketService3 {
     public Ticket getTicket(Long ticketId) {
         return ticketRepository.findById(ticketId)
                 .orElseThrow(() -> new EntityNotFoundException("해당 티켓이 존재하지 않습니다."));
+    }
+
+    public List<Ticket> findAll(){
+        return ticketRepository.findAll();
+    }
+
+    public List<Ticket> findAllEnable(){
+        return ticketRepository.findByExpiredAtIsNullAndUsedAtIsNull();
+    }
+
+    public List<Ticket> findAllDisable(){
+        return ticketRepository.findByExpiredAtIsNotNullOrUsedAtIsNotNull();
     }
 }

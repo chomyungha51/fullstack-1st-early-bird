@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
     // 사용가능한 티켓들
-    public List<Ticket> findByExpiredAtIsNullAndUsedAtIsNull();
-    public List<Ticket> findByExpiredAtIsNotNullOrUsedAtIsNotNull();
+    List<Ticket> findByExpiredAtIsNullAndUsedAtIsNull();
+
+    List<Ticket> findByExpiredAtIsNotNullOrUsedAtIsNotNull();
 }

@@ -6,16 +6,16 @@ import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @ToString
 public class TicketListResponse {
-    List<TicketDTO> ticketList;
+    private List<TicketDTO> ticketList;
 
     public TicketListResponse(List<Ticket> tickets) {
-        this.ticketList = new ArrayList<>();
-        for(Ticket ticket:tickets){
-            ticketList.add(new TicketDTO(ticket));
-        }
+        this.ticketList = tickets.stream()
+                .map(TicketDTO::new)
+                .collect(Collectors.toList());
     }
 }
