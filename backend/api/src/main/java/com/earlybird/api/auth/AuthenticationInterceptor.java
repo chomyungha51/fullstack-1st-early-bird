@@ -15,6 +15,10 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
+        if (isGetTicketListRequest(request)) {
+            return true;
+        }
+
         HttpSession session = request.getSession(false);
         if (session == null) {
             response.sendError(HttpStatus.UNAUTHORIZED.value());
@@ -30,4 +34,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         return true;
     }
 
+    private static boolean isGetTicketListRequest(HttpServletRequest request) {
+        return "GET".equals(request.getMethod()) && "/api/tickets".equals(request.getRequestURI());
+    }
 }
