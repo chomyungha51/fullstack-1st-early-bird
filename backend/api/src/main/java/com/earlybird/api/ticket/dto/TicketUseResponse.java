@@ -5,8 +5,10 @@ import lombok.Getter;
 @Getter
 public class TicketUseResponse {
     private String status;
+    private Object data;
 
-    public TicketUseResponse(String status) {
+    public TicketUseResponse(String status, Object data) {
         this.status = status;
+        this.data = data;
     }
 }

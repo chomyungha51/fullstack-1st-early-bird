@@ -7,12 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class TicketService3 {
+public class TicketService {
     private final TicketRepository ticketRepository;
 
     @Transactional
@@ -27,15 +28,19 @@ public class TicketService3 {
                 .orElseThrow(() -> new EntityNotFoundException("해당 티켓이 존재하지 않습니다."));
     }
 
-    public List<Ticket> findAll(){
+    public List<Ticket> findAll() {
         return ticketRepository.findAll();
     }
 
-    public List<Ticket> findAllEnable(){
-        return ticketRepository.findByExpiredAtIsNullAndUsedAtIsNull();
+    public List<Ticket> findAllEnable() {
+        LocalDate today = LocalDate.now();
+
+        return ticketRepository.findEnableTickets(today);
     }
 
-    public List<Ticket> findAllDisable(){
-        return ticketRepository.findByExpiredAtIsNotNullOrUsedAtIsNotNull();
+    public List<Ticket> findAllDisable() {
+        LocalDate today = LocalDate.now();
+
+        return ticketRepository.findDisabledTickets(today);
     }
 }
