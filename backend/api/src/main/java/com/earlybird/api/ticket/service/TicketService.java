@@ -1,7 +1,9 @@
 package com.earlybird.api.ticket.service;
 
 import com.earlybird.api.ticket.domain.Ticket;
+import com.earlybird.api.ticket.dto.TicketIssueRequest;
 import com.earlybird.api.ticket.repository.TicketRepository;
+import com.earlybird.api.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,5 +44,15 @@ public class TicketService {
         LocalDate today = LocalDate.now();
 
         return ticketRepository.findDisabledTickets(today);
+    }
+
+    public Ticket issue(TicketIssueRequest request) {
+        User user = request.getUser();
+        String description = request.getDescription();
+        LocalDate expiredAt = request.getExpireAt();
+
+        Ticket ticket = new Ticket(user, description, expiredAt);
+
+        return ticketRepository.save(ticket);
     }
 }
