@@ -22,7 +22,7 @@ const Home = () => {
           <div class="flex justify-center items-center">
             <div class="inline-block">
               <div class="flex">
-                <div class="px-4 py-2 bg-yellow-400 text-white rounded-t-lg">
+                <div class="px-4 py-2 bg-yellow-400 text-white rounded-t-lg cursor-pointer">
                   사용가능
                 </div>
 
