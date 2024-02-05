@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailwind Menu Tabs</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="flex justify-center items-center h-screen bg-gray-200">
+    <div class="inline-block">
+      <div class="flex">
+        <!-- Active Tab -->
+        <div class="px-4 py-2 bg-yellow-400 text-white rounded-t-lg">사용</div>
+        <!-- Inactive Tabs -->
+        <div
+          class="px-4 py-2 bg-yellow-200 text-black rounded-t-lg cursor-pointer"
+        >
+          미사용
+        </div>
+        <div
+          class="px-4 py-2 bg-yellow-200 text-black rounded-t-lg cursor-pointer"
+        >
+          전체
+        </div>
+      </div>
+      <!-- Tab Content -->
+      <div class="p-5 bg-yellow-50 border rounded-b-lg">
+        탭 컨텐츠가 여기에 표시됩니다.
+      </div>
+    </div>
+  </body>
+</html>
