@@ -31,4 +31,10 @@ public class Ticket extends BaseEntity {
 
     @Column(name = "used_at")
     private LocalDate usedAt;
+
+    public Ticket(User user, String description, LocalDate expiredAt) {
+        this.user = user;
+        this.description = description;
+        this.expiredAt = expiredAt;
+    }
 }
