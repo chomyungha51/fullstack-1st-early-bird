@@ -1,5 +1,7 @@
-package com.earlybird.api.auth.domain;
+package com.earlybird.api.auth.dto;
 
+import com.earlybird.api.auth.domain.Account;
+import com.earlybird.api.auth.domain.Role;
 import lombok.Getter;
 
 @Getter
@@ -12,7 +14,7 @@ public class AccountDTO {
         this.role = role;
     }
 
-    public static AccountDTO from(Account account){
+    public static AccountDTO from(Account account) {
         final String username = account.getUsername();
         final Role role = account.getRole();
 
