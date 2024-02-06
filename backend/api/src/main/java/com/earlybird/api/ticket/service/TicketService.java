@@ -5,6 +5,7 @@ import com.earlybird.api.ticket.repository.TicketRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -18,10 +19,10 @@ public class TicketService {
     }
 
     public List<Ticket> findAllEnable(){
-        return ticketRepository.findByExpiredAtIsNullAndUsedAtIsNull();
+        return ticketRepository.findByExpiredAtGreaterThanEqualAndUsedAtIsNull(LocalDate.now());
     }
 
     public List<Ticket> findAllDisable(){
-        return ticketRepository.findByExpiredAtIsNotNullOrUsedAtIsNotNull();
+        return ticketRepository.findByExpiredAtLessThanOrUsedAtIsNotNull(LocalDate.now());
     }
 }

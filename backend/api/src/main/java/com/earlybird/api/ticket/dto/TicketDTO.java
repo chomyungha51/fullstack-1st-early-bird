@@ -12,7 +12,7 @@ import java.util.List;
 @ToString
 public class TicketDTO {
     private Long id;
-    private Long userId;
+    private String userName;
     private String description;
     private LocalDate expiredAt;
     private LocalDate usedAt;
@@ -20,7 +20,7 @@ public class TicketDTO {
 
     public TicketDTO(Ticket ticket){
         this.id = ticket.getId();
-        this.userId = ticket.getUser().getId();
+        this.userName = ticket.getUser().getName();
         this.description = ticket.getDescription();
         this.usedAt = ticket.getUsedAt();
         this.expiredAt = ticket.getExpiredAt();
