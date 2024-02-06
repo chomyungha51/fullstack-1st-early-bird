@@ -21,12 +21,20 @@ const Header = ({ user, modalOpen }) => {
         </button>
       )}
       {currentPage === "/" ? (
-        <Link
-          className="top-8 bg-black text-light-yellow border-2 border-light-yellow py-2 px-4 rounded  hover:bg-light-yellow hover:text-black transition-colors duration-300 absolute right-5 p-10"
-          to="/login"
-        >
-          로그인
-        </Link>
+        <>
+          <Link
+            className="top-8 bg-black text-light-yellow border-2 border-light-yellow py-2 px-4 rounded  hover:bg-light-yellow hover:text-black transition-colors duration-300 absolute right-32 p-10"
+            to="/login"
+          >
+            로그인
+          </Link>
+          <Link
+            className="top-8 bg-black text-light-yellow border-2 border-light-yellow py-2 px-4 rounded  hover:bg-light-yellow hover:text-black transition-colors duration-300 absolute right-5 p-10"
+            to="/login"
+          >
+            로그아웃
+          </Link>
+        </>
       ) : (
         <Link
           to="/"
