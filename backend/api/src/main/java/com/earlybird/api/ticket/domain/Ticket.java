@@ -31,4 +31,26 @@ public class Ticket extends BaseEntity {
 
     @Column(name = "used_at")
     private LocalDate usedAt;
+
+    public Ticket(User user, String description, LocalDate expiredAt) {
+        this.user = user;
+        this.description = description;
+        this.expiredAt = expiredAt;
+    }
+
+    public void use() {
+        if (isExpired() || isUsed()) {
+            throw new IllegalStateException("이미 사용되었거나 만료된 티켓입니다.");
+        }
+        usedAt = LocalDate.now();
+    }
+
+    public boolean isExpired() {
+        LocalDate today = LocalDate.now();
+        return today.isAfter(expiredAt);
+    }
+
+    public boolean isUsed() {
+        return usedAt != null;
+    }
 }

@@ -14,7 +14,7 @@ const getToday = () => {
   const today = new Date();
   return `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
 };
-const Home = ({ user, onChangeUser }) => {
+const Home = ({ user }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentTab, setCurrentTab] = useState(tabNames[0]);
   const [tickets, setTickets] = useState([]);

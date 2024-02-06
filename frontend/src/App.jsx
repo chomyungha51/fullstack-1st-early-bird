@@ -12,10 +12,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={<Home user={user} onChangeUser={onChangeUser} />}
-        />
+        <Route path="/" element={<Home user={user} />} />
         <Route
           path="/login"
           element={<Login user={user} onChangeUser={onChangeUser} />}
