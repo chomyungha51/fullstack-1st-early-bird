@@ -6,6 +6,7 @@ import Header from "../layouts/Header";
 import { tabNames } from "../constants";
 import TicketContainer from "../components/TicketContainer";
 
+
 const parseDate = (date) => {
   return date !== null ? date.split("T")[0] : "";
 };
@@ -18,6 +19,7 @@ const Home = ({ user }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentTab, setCurrentTab] = useState(tabNames[0]);
   const [tickets, setTickets] = useState([]);
+  const [AddModalOpen, setAddModal] = useState(false);
   const onClickTab = (tab) => {
     setCurrentTab(tab);
   };
@@ -28,6 +30,14 @@ const Home = ({ user }) => {
   const onClose = () => {
     setModalOpen(false);
   };
+
+  const openAddModal = () => {
+    setAddModal(true)
+  }
+  const closeAddModal = () => {
+    setAddModal(false)
+  }
+
 
   useEffect(() => {
     getTickets(currentTab.status).then((res) => {
@@ -55,7 +65,7 @@ const Home = ({ user }) => {
   return (
     <>
       <DefaultLayout>
-        <Header user={user} modalOpen={onOpen} />
+        <Header user={user} modalOpen={onOpen} addModalOpen={AddModalOpen} openAddModal={openAddModal} closeAddModal={closeAddModal}/>
         <div className="p-10">
           <TicketContainer
             tickets={tickets}
