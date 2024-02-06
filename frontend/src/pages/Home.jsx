@@ -34,6 +34,7 @@ const Home = ({ user }) => {
       const parsedData = res.ticketList.map((data) => {
         return {
           ...data,
+
           createdAt: parseDate(data.createdAt),
           expiredAt: parseDate(data.expiredAt),
           usedAt: parseDate(data.usedAt),
@@ -60,9 +61,11 @@ const Home = ({ user }) => {
             tickets={tickets}
             currentTab={currentTab}
             onChangeTab={onClickTab}
+            modalOpen={modalOpen}
+            onOpen={onOpen}
+            onClose={onClose}
           />
         </div>
-        <Modal open={modalOpen} onClose={onClose} />
       </DefaultLayout>
     </>
   );

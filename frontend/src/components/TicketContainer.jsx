@@ -1,7 +1,21 @@
+import { useState } from "react";
 import { tabNames } from "../constants";
 import Ticket from "./Ticket";
+import TicketUseModal from "./TicketUseModal";
 
-const TicketContainer = ({ tickets, currentTab, onChangeTab }) => {
+const TicketContainer = ({
+  tickets,
+  currentTab,
+  onChangeTab,
+  modalOpen,
+  onOpen,
+  onClose,
+}) => {
+  const [ticket, setTicket] = useState(null);
+  const onClickTicket = (newTicket) => {
+    setTicket(newTicket);
+    onOpen();
+  };
   return (
     <div className="flex justify-center items-center w-full h-full">
       <div className="w-full">
@@ -23,13 +37,21 @@ const TicketContainer = ({ tickets, currentTab, onChangeTab }) => {
             );
           })}
         </div>
-
         <div className="p-5 bg-yellow-300 rounded-b-lg grid grid-cols-4 grid-rows-2 gap-y-5 h-[calc(100vh-450px)] overflow-y-scroll scrollbar-hide">
           {tickets.length > 0 &&
             tickets?.map((ticket) => {
-              return <Ticket key={ticket.id} ticket={ticket} />;
+              return (
+                <Ticket
+                  key={ticket.id}
+                  ticket={ticket}
+                  onClickButton={() => onClickTicket(ticket)}
+                />
+              );
             })}
         </div>
+        {modalOpen && (
+          <TicketUseModal ticket={ticket} onOpen={onOpen} onClose={onClose} />
+        )}
       </div>
     </div>
   );

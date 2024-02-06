@@ -1,13 +1,16 @@
-const Ticket = ({ ticket }) => {
-  const { id, userName, description, expiredAt, usedAt, createdAt, enable } =
+const Ticket = ({ ticket, onClickButton }) => {
+  const { id, user, description, expiredAt, usedAt, createdAt, enable } =
     ticket;
 
   return (
     <div className="place-self-center bg-yellow-50 shadow-sm rounded-lg overflow-hidden relative w-96 h-[190px] p-6 box-border text-black">
       <div className="flex justify-between align-middle ">
-        <p className="font-bold my-2 text-2xl">{userName}의 면제권</p>
+        <p className="font-bold my-2 text-2xl">{user.name}의 면제권</p>
         {enable && (
-          <button className="bg-yellow-300 hover:shadow-lg py-2 px-4 rounded text-lg">
+          <button
+            className="bg-yellow-300 hover:shadow-lg py-2 px-4 rounded text-lg"
+            onClick={onClickButton}
+          >
             사용하기
           </button>
         )}
