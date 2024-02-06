@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const Header = ({ user, modalOpen }) => {
   const currentPage = useLocation().pathname;
-
+  console.log("header", user);
   return (
     <div className="flex justify-center">
       <img
