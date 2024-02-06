@@ -2,7 +2,11 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "light-yellow": "#f3e98c",
+      },
+    },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 };

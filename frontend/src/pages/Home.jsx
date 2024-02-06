@@ -1,67 +1,71 @@
-import { Link } from "react-router-dom";
 import Modal from "../components/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DefaultLayout from "../layouts/DefaultLayout";
 import { getTickets } from "../apis/ticket";
-import Ticket from "../components/Ticket";
+import Header from "../layouts/Header";
+import { tabNames } from "../constants";
+import TicketContainer from "../components/TicketContainer";
 
-const Home = () => {
+const parseDate = (date) => {
+  return date !== null ? date.split("T")[0] : "";
+};
+
+const getToday = () => {
+  const today = new Date();
+  return `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+};
+const Home = ({ user }) => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [currentTab, setCurrentTab] = useState(tabNames[0]);
+  const [tickets, setTickets] = useState([]);
+  const onClickTab = (tab) => {
+    setCurrentTab(tab);
+  };
+  const onOpen = () => {
+    setModalOpen(true);
+  };
+
   const onClose = () => {
     setModalOpen(false);
   };
-  // GET tickets api
-  getTickets("enable").then((res) => console.log(res));
+
+  useEffect(() => {
+    getTickets(currentTab.status).then((res) => {
+      const parsedData = res.ticketList.map((data) => {
+        return {
+          ...data,
+
+          createdAt: parseDate(data.createdAt),
+          expiredAt: parseDate(data.expiredAt),
+          usedAt: parseDate(data.usedAt),
+          enable:
+            data.usedAt === null &&
+            parseDate(data.expiredAt).length > 0 &&
+            parseDate(data.expiredAt) < getToday(),
+        };
+      });
+
+      setTickets(
+        parsedData
+          .sort((a, b) => a.createdAt < b.createdAt)
+          .sort((a, b) => (a.enable ? -1 : 1))
+      );
+    });
+  }, [currentTab]);
   return (
     <>
       <DefaultLayout>
-        <img src="src/assets/logo.png" width={500} height={500} />
-        <Link to="/login"> 로그인 페이지로 이동 </Link>
-        <div>
-          <button onClick={() => setModalOpen(!modalOpen)}>면제권 추가</button>
-          <div class="flex justify-center items-center">
-            <div class="inline-block">
-              <div class="flex">
-                <div class="px-4 py-2 bg-yellow-400 text-white rounded-t-lg cursor-pointer">
-                  사용가능
-                </div>
-
-                <div class="px-4 py-2 bg-yellow-200 text-black rounded-t-lg cursor-pointer">
-                  사용완료 · 기간만료
-                </div>
-                <div class="px-4 py-2 bg-yellow-200 text-black rounded-t-lg cursor-pointer">
-                  전체
-                </div>
-              </div>
-
-              <div class="p-5 bg-yellow-50 border rounded-b-lg">
-                <Ticket />
-              </div>
-            </div>
-          </div>
-          {/* <div>
-            면제권 리스트
-            <div className="flex justify-around w-full">
-              <div>
-                미사용
-                <div className="border-2 border-solid border-slate-400 rounded-lg">
-                  <div>티켓 번호 : 1</div>
-                  <div>티켓 설명 : 백엔드 퀴즈</div>
-                  <div>사용자: 조명하</div>
-                  <div>생성 일자: 2024-02-05</div>
-                </div>
-              </div>
-              <div>
-                사용 완료
-                <div>
-                 
-                </div>
-              </div>
-              <div>전체</div>
-            </div>
-          </div> */}
+        <Header user={user} modalOpen={onOpen} />
+        <div className="p-10">
+          <TicketContainer
+            tickets={tickets}
+            currentTab={currentTab}
+            onChangeTab={onClickTab}
+            modalOpen={modalOpen}
+            onOpen={onOpen}
+            onClose={onClose}
+          />
         </div>
-        <Modal open={modalOpen} onClose={onClose} />
       </DefaultLayout>
     </>
   );
