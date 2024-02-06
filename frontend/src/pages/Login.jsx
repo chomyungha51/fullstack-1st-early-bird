@@ -83,7 +83,7 @@ const Login = ({ user, onChangeUser }) => {
             </button>
           </span>
         </div>
-        {inputCheck && <p className="flex justify-center">확인 해주세요</p>}
+        {inputCheck && <p className="flex justify-center">확인해주세요</p>}
       </DefaultLayout>
     </>
   );

@@ -1,6 +1,7 @@
 import { useTicket } from "../apis/ticket";
 
 const TicketUseModal = ({ ticket, onOpen, onClose }) => {
+  console.log(ticket);
   const ticketUsername = ticket.user.name;
 
   const useTicketAction = () => {

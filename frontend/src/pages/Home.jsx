@@ -5,6 +5,7 @@ import { getTickets, searchUser } from "../apis/ticket";
 import Header from "../layouts/Header";
 import { tabNames } from "../constants";
 import TicketContainer from "../components/TicketContainer";
+import UserSearchInput from "../components/UserSearchInput";
 
 const parseDate = (date) => {
   return date !== null ? date.split("T")[0] : "";
@@ -28,7 +29,7 @@ const Home = ({ user }) => {
   const onClose = () => {
     setModalOpen(false);
   };
-  console.log(searchUser());
+
   useEffect(() => {
     getTickets(currentTab.status).then((res) => {
       const parsedData = res.ticketList.map((data) => {
@@ -56,6 +57,7 @@ const Home = ({ user }) => {
     <>
       <DefaultLayout>
         <Header user={user} modalOpen={onOpen} />
+        <UserSearchInput />
         <div className="p-10">
           <TicketContainer
             tickets={tickets}
