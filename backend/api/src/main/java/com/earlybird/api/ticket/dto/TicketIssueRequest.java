@@ -9,12 +9,12 @@ import java.time.LocalDate;
 @Getter
 @ToString
 public class TicketIssueRequest {
-    private User user;
+    private Long userId;
     private String description;
     private LocalDate expireAt;
 
-    public TicketIssueRequest(User user, String description, LocalDate expireAt) {
-        this.user = user;
+    public TicketIssueRequest(Long userId, String description, LocalDate expireAt) {
+        this.userId = userId;
         this.description = description;
         this.expireAt = expireAt;
     }

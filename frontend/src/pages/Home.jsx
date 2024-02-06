@@ -19,6 +19,7 @@ const Home = ({ user }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentTab, setCurrentTab] = useState(tabNames[0]);
   const [tickets, setTickets] = useState([]);
+  const [AddModalOpen, setAddModal] = useState(false);
   const onClickTab = (tab) => {
     setCurrentTab(tab);
   };
@@ -28,6 +29,13 @@ const Home = ({ user }) => {
 
   const onClose = () => {
     setModalOpen(false);
+  };
+
+  const openAddModal = () => {
+    setAddModal(true);
+  };
+  const closeAddModal = () => {
+    setAddModal(false);
   };
 
   useEffect(() => {

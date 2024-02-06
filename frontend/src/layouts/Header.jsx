@@ -1,7 +1,13 @@
 import { roles } from "../constants";
 import { Link, useLocation } from "react-router-dom";
+import ModalForNewTicket from "../components/ModalForNewTicket";
+import { createPortal } from 'react-dom';
+import NewTicketForm from "../components/NewTicketForm";
 
-const Header = ({ user, modalOpen }) => {
+
+
+
+const Header = ({ user, modalOpen, addModalOpen, openAddModal, closeAddModal }) => {
   const currentPage = useLocation().pathname;
   console.log("header", user);
   return (
@@ -12,14 +18,20 @@ const Header = ({ user, modalOpen }) => {
         width={300}
         height={300}
       />
-      {user.role === roles[1] && (
+
         <button
           className="absolute right-[8rem] top-8 bg-black text-light-yellow border-2 border-light-yellow py-2 px-4 rounded  hover:bg-light-yellow hover:text-black transition-colors duration-300"
-          onClick={modalOpen}
+          onClick={openAddModal}
         >
           면제권 추가
         </button>
-      )}
+        {addModalOpen && createPortal(
+            <ModalForNewTicket closeAddModal={closeAddModal}>
+              <NewTicketForm closeAddModal={closeAddModal}>New Ticket</NewTicketForm>
+            </ModalForNewTicket>, 
+            document.body)}
+
+
       {currentPage === "/" ? (
         <>
           <Link

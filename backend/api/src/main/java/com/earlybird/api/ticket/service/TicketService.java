@@ -4,6 +4,7 @@ import com.earlybird.api.ticket.domain.Ticket;
 import com.earlybird.api.ticket.dto.TicketIssueRequest;
 import com.earlybird.api.ticket.repository.TicketRepository;
 import com.earlybird.api.user.domain.User;
+import com.earlybird.api.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,12 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class TicketService {
     private final TicketRepository ticketRepository;
+    private final UserRepository userRepository;
 
     @Transactional
     public void useTicket(Long ticketId) {
@@ -47,7 +50,8 @@ public class TicketService {
     }
 
     public Ticket issue(TicketIssueRequest request) {
-        User user = request.getUser();
+        Optional<User> OptionalUser = userRepository.findById(request.getUserId());
+        User user = OptionalUser.get();
         String description = request.getDescription();
         LocalDate expiredAt = request.getExpireAt();
 
