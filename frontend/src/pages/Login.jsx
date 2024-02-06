@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import DefaultLayout, { notify } from "../layouts/DefaultLayout";
+import Header from "../layouts/Header";
 
-const Login = () => {
+const Login = ({ user, onChangeUser }) => {
   // TODO : 아이디 비밀번호 입력받기
 
   const login = () => {
@@ -11,8 +11,8 @@ const Login = () => {
   return (
     <>
       <DefaultLayout>
-        <h1 className="text-red-700">Login</h1>
-        <Link to="/"> 홈 화면으로 이동 </Link>
+        <Header user={user} />
+
         <div>
           <div>
             아이디
