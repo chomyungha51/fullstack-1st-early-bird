@@ -15,7 +15,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     public List<User> searchUser(String name) {
-        return userRepository.findByName(name);
+        return userRepository.findByNameLike(name);
     }
 
     public List<User> getAllUsers() {
