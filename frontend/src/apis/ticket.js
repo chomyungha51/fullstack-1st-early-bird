@@ -1,6 +1,6 @@
 
 
-const BASE_URL = `http://localhost:5173/api`;
+const BASE_URL = `http://localhost:8080/api`;
 
 export const getTickets = async (status = "all") => {
   const tickets = (await fetch(`${BASE_URL}/tickets?status=${status}`)).json();

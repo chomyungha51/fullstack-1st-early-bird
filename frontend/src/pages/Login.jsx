@@ -74,7 +74,7 @@ const Login = ({ user, onChangeUser }) => {
               <span className="inline-flex">
                 <img
                   className="bg-yellow-400"
-                  src="src/assets/pwd-icon.png"
+                  src="public/pwd-icon.png"
                   width={30}
                   height={10}
                 />
@@ -88,7 +88,7 @@ const Login = ({ user, onChangeUser }) => {
               <span className="inline-flex mt-0.5">
                 <img
                   className="bg-yellow-400"
-                  src="src/assets/id-icon.png"
+                  src="public/id-icon.png"
                   width={30}
                   height={10}
                 />
