@@ -1,11 +1,9 @@
-import Modal from "../components/Modal";
 import { useEffect, useState } from "react";
 import DefaultLayout from "../layouts/DefaultLayout";
-import { getTickets, searchUser } from "../apis/ticket";
+import { getTickets } from "../apis/ticket";
 import Header from "../layouts/Header";
 import { tabNames } from "../constants";
 import TicketContainer from "../components/TicketContainer";
-import UserSearchInput from "../components/UserSearchInput";
 
 const parseDate = (date) => {
   return date !== null ? date.split("T")[0] : "";
@@ -71,7 +69,6 @@ const Home = ({ user }) => {
           openAddModal={openAddModal}
           closeAddModal={closeAddModal}
         />
-        <UserSearchInput />
         <div className="p-10">
           <TicketContainer
             tickets={tickets}

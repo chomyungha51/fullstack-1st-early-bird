@@ -49,9 +49,11 @@ public class TicketService {
         return ticketRepository.findDisabledTickets(today);
     }
 
+    @Transactional
     public Ticket issue(TicketIssueRequest request) {
-        Optional<User> OptionalUser = userRepository.findById(request.getUserId());
-        User user = OptionalUser.get();
+        User user = userRepository.findById(request.getUserId())
+                .orElseThrow(() -> new EntityNotFoundException("해당 유저가 존재하지 않습니다."));
+
         String description = request.getDescription();
         LocalDate expiredAt = request.getExpireAt();
 
