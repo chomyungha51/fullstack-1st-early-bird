@@ -4,6 +4,8 @@ import { useState } from "react";
 import Header from "../layouts/Header";
 import { roles } from "../constants";
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 const Login = ({ user, onChangeUser }) => {
   const navigate = useNavigate();
   const [id, setId] = useState("");
@@ -13,7 +15,7 @@ const Login = ({ user, onChangeUser }) => {
 
   const login = async () => {
     try {
-      const response = await fetch("/api/auth/login", {
+      const response = await fetch(`${BASE_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -51,7 +53,7 @@ const Login = ({ user, onChangeUser }) => {
 
   const logout = async () => {
     try {
-      await fetch("/api/auth/logout", {
+      await fetch(`${BASE_URL}/auth/logout`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

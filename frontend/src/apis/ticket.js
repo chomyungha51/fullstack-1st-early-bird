@@ -1,6 +1,4 @@
-
-
-const BASE_URL = `http://52.79.210.208:8080/api`;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const getTickets = async (status = "all") => {
   const tickets = (await fetch(`${BASE_URL}/tickets?status=${status}`)).json();
