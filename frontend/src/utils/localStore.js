@@ -1,0 +1,1 @@
+export const getLoginedUser = () => localStorage.getItem("loginedUser");
