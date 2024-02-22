@@ -64,7 +64,13 @@ const Home = ({ user }) => {
   return (
     <>
       <DefaultLayout>
-        <Header user={user} modalOpen={onOpen} />
+        <Header
+          user={user}
+          modalOpen={onOpen}
+          addModalOpen={AddModalOpen}
+          openAddModal={openAddModal}
+          closeAddModal={closeAddModal}
+        />
         <UserSearchInput />
         <div className="p-10">
           <TicketContainer
