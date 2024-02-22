@@ -14,7 +14,7 @@ export const useTicket = async (ticketId) => {
 };
 
 export const addTickets = async (data) => {
-  const response = await fetch(`${BASE_URL}/tickets`, {
+  return await fetch(`${BASE_URL}/tickets`, {
     method: "POST", // 또는 'PUT'
     headers: {
       "Content-Type": "application/json",

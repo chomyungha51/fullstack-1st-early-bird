@@ -1,7 +1,6 @@
-import Modal from "../components/Modal";
 import { useEffect, useState } from "react";
 import DefaultLayout from "../layouts/DefaultLayout";
-import { getTickets, searchUser } from "../apis/ticket";
+import { getTickets } from "../apis/ticket";
 import Header from "../layouts/Header";
 import { tabNames } from "../constants";
 import TicketContainer from "../components/TicketContainer";
