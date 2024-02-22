@@ -19,6 +19,6 @@ public class UserController {
     public SearchUserResponse searchUser(@RequestParam(required = false) String name) {
         List<User> users = name == null ? userService.getAllUsers() : userService.searchUser(name);
 
-        return new SearchUserResonse(users);
+        return new SearchUserResponse(users);
     }
 }
