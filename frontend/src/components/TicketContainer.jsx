@@ -11,10 +11,16 @@ const TicketContainer = ({
   onOpen,
   onClose,
 }) => {
-  const [ticket, setTicket] = useState(null);
+  const [ticket, setTicket] = useState({
+    user: { name: "test" },
+  });
+
   const onClickTicket = (newTicket) => {
-    setTicket(newTicket);
-    onOpen();
+    console.log("newTicket", newTicket);
+    if (newTicket !== undefined) {
+      setTicket(newTicket);
+      onOpen();
+    }
   };
   return (
     <div className="flex justify-center items-center w-full h-full">

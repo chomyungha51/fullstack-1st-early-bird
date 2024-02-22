@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "http://localhost:5175")
+@CrossOrigin(origins = "http://localhost:5173")
 public class UserController {
     private final UserService userService;
 
@@ -19,6 +19,6 @@ public class UserController {
     public SearchUserResponse searchUser(@RequestParam(required = false) String name) {
         List<User> users = name == null ? userService.getAllUsers() : userService.searchUser(name);
 
-        return new SearchUserResponse(users);
+        return new SearchUserResonse(users);
     }
 }
