@@ -22,7 +22,7 @@ const Header = ({
   return (
     <div className="flex justify-center">
       <img
-        src="public/logo.png"
+        src="/logo.png"
         className="h-[320px] w-[300px]"
         width={300}
         height={300}

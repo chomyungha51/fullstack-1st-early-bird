@@ -1,5 +1,5 @@
 
-const BASE_URL = `{process.env.REACT_APP_TEST_KEY}/api`;
+const BASE_URL = `${import.meta.env.VITE_API_URL}/api`;
 
 export const searchUser = async (userName) => {
   const queryString = userName ? `?name=${userName}` : ``;

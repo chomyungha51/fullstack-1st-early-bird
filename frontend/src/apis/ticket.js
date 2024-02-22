@@ -1,7 +1,7 @@
 
 
-const BASE_URL = `{process.env.REACT_APP_TEST_KEY}/api`;
-
+const BASE_URL = `${import.meta.env.VITE_API_URL}/api`;
+console.log(BASE_URL)
 export const getTickets = async (status = "all") => {
   const tickets = (await fetch(`${BASE_URL}/tickets?status=${status}`)).json();
   return tickets;
