@@ -11,6 +11,7 @@ const TicketUseModal = ({ ticket, onOpen, onClose }) => {
           throw new Error("지각 면제권 사용에 실패했습니다.");
         }
         alert(`${ticketUsername}님의 지각 면제권이 사용되었습니다!!`);
+        window.location.reload();
       })
       .catch((err) => {
         alert(err.message);
