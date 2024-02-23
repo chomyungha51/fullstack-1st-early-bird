@@ -43,7 +43,7 @@ const TicketContainer = ({
             );
           })}
         </div>
-        <div className="p-5 bg-yellow-300 rounded-b-lg grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-rows-2 gap-y-5 h-[calc(100vh-450px)] overflow-y-scroll scrollbar-hide">
+        <div className="p-5 bg-yellow-300 rounded-b-lg grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-5 h-[calc(100vh-450px)] overflow-y-scroll scrollbar-hide">
           {tickets.length > 0 &&
             tickets?.map((ticket) => {
               return (
