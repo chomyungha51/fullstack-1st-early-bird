@@ -26,7 +26,7 @@ const NewTicketForm = ({ closeAddModal, children }) => {
     addTickets({
       userId: user.id,
       description: description,
-      expiredAt: date,
+      expireAt: date,
     })
       .then((response) => {
         closeAddModal();
