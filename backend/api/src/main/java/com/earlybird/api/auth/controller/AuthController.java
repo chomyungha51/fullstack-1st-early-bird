@@ -16,9 +16,6 @@ import java.io.IOException;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/auth")
-
-@CrossOrigin(origins="http://52.79.144.143/")
-
 public class AuthController {
     private final AccountService accountService;
     private final ObjectMapper objectMapper;
