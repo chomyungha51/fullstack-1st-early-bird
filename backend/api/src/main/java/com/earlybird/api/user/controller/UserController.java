@@ -12,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/users")
 @CrossOrigin(origins="http://52.79.144.143/")
+
 public class UserController {
     private final UserService userService;
 

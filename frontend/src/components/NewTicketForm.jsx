@@ -26,12 +26,13 @@ const NewTicketForm = ({ closeAddModal, children }) => {
     addTickets({
       userId: user.id,
       description: description,
-      expiredAt: date,
+      expireAt: date,
     })
       .then((response) => {
         closeAddModal();
         if (response.ok) {
           alert("지각 면제권이 발행되었습니다.");
+          window.location.reload();
         }
       })
       .catch((error) => console.error(error));
